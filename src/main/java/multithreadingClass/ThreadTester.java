@@ -16,6 +16,32 @@ public class ThreadTester {
         thread2.start();
         //if you start thread2 start again, it will give exception
 
+        //Using Lambda Expression, no need to implement interface and override method, compiler wll
+        //take care of boilerplate code
+//        Thread thread2 = new Thread(() ->
+//        {
+//            for(int i=5; i<10; i++)
+//                System.out.println(Thread.currentThread() + " " + i);
+//        }, "thread2");
+
+
+        //Stack Example
+        Stack stack = new Stack(5);
+
+        //Created two thread, 1) Trying to push 10 times, 2) Trying to pop 10 times in the same stack
+
+        new Thread(() -> {
+            int counter = 0;
+            while(counter++ < 10)
+                System.out.println("Pushed: "+stack.push(100));
+        }, "Pusher").start();
+
+        new Thread(() -> {
+            int counter = 0;
+            while(counter++ < 10)
+                System.out.println("Popped: "+stack.pop());
+        }, "Popper").start();
+
         System.out.println("main is exiting");
     }
 }
