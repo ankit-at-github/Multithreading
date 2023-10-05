@@ -21,6 +21,14 @@ public class Stack {
 //        {
 //            whatever you write inside the method, this block is implemented by compiler
 //        }
+
+//        In case this method would have been static method then this is replace by .class
+//        synchronized (Static.class)
+//        {
+//            whatever you write inside the method, this block is implemented by compiler
+//        }
+
+
             if(isFull()) return false;
             stackTop++;
 
