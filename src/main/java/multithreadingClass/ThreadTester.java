@@ -65,18 +65,57 @@ public class ThreadTester {
 //
 //-----------------------Thread joining concept-------------------------------------------------------------------------------------------
 
-        Thread thread = new Thread(() -> {
-            System.out.println(Thread.currentThread());
-        }, "Our Thread");
-        thread.start();
+//        Thread thread = new Thread(() -> {
+//            System.out.println(Thread.currentThread());
+//        }, "Our Thread");
+//        thread.start();
+//
+//        try {
+//            thread.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//        //Checkint thread priority
+//        System.out.println(thread.getPriority());
 
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//-----------------------Deadlock-------------------------------------------------------------------------------------------
+        String lock1 = "ankit";
+        String lock2 = "kumar";
 
-        System.out.println("main is exiting");
+        Thread thread1 = new Thread(() -> {
+            synchronized (lock1){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //This is possible that you need more than 1 lock to access critical section
+                synchronized (lock2){
+                    System.out.println("lock acquired");
+                }
+            }
+        }, "thread1");
+        Thread thread2 = new Thread(() -> {
+            //Reverse lock order, creating deadlock situation
+            synchronized (lock2){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //This is possible that you need more than 1 lock to access critical section
+                synchronized (lock1){
+                    System.out.println("lock acquired");
+                }
+            }
+        }, "thread2");
 
+        thread1.start();
+        thread2.start();
+
+//        System.out.println("main is exiting");
     }
 }
