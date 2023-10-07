@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //Producer-Consumer Problem
-//Multiple threads are trying to push items into the queue, and multiple items are trying to poll items from the queue.
+//Multiple threads are trying to push items into the queue, and multiple threads are trying to poll items from the queue.
 public class BlockingQueue {
     private Queue<Integer> q;
     private int capacity;
