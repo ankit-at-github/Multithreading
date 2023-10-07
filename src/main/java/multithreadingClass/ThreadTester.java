@@ -12,8 +12,8 @@ public class ThreadTester {
 //        thread1.start();
 
         //Thread thread = new Thread(new Thread2());
-        Thread thread2 = new Thread(new Thread2(), "thread2");
-        thread2.start();
+//        Thread thread2 = new Thread(new Thread2(), "thread2");
+//        thread2.start();
         //if you start thread2 start again, it will give exception
 
         //Using Lambda Expression, no need to implement interface and override method, compiler wll
@@ -26,22 +26,42 @@ public class ThreadTester {
 
 
         //Stack Example
-        Stack stack = new Stack(5);
+//        Stack stack = new Stack(5);
+//
+//        //Created two thread, 1) Trying to push 10 times, 2) Trying to pop 10 times in the same stack
+//
+//        new Thread(() -> {
+//            int counter = 0;
+//            while(counter++ < 10)
+//                System.out.println("Pushed: "+stack.push(100));
+//        }, "Pusher").start();
+//
+//        new Thread(() -> {
+//            int counter = 0;
+//            while(counter++ < 10)
+//                System.out.println("Popped: "+stack.pop());
+//        }, "Popper").start();
+//
+//        System.out.println("main is exiting");
 
-        //Created two thread, 1) Trying to push 10 times, 2) Trying to pop 10 times in the same stack
+//------------------------------------------------------------------------------------------------------------------
+    Thread thread3 = new Thread(() -> {
+        try {
+            Thread.sleep(1);
+            for(int i=10000; i>0; i--);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }, "States");
 
-        new Thread(() -> {
-            int counter = 0;
-            while(counter++ < 10)
-                System.out.println("Pushed: "+stack.push(100));
-        }, "Pusher").start();
+    thread3.start();
 
-        new Thread(() -> {
-            int counter = 0;
-            while(counter++ < 10)
-                System.out.println("Popped: "+stack.pop());
-        }, "Popper").start();
+    while(true)
+    {
+        Thread.State state = thread3.getState();
+        System.out.println(state);
+        if(state == Thread.State.TERMINATED) break;
+    }
 
-        System.out.println("main is exiting");
     }
 }

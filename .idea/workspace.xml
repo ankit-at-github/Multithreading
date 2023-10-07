@@ -40,6 +40,11 @@
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="ThreadTester" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="ThreadTester" />
